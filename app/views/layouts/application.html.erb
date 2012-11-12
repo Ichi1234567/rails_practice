@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Demo</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= requirejs_include_tag "application" %>
+  <%# javascript_include_tag params[:controller] %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<%= yield %>
+
+<script>
+	require.config({
+		shim: {
+			"<%= params[:controller] %>": {
+				deps: ["application"]
+			}
+		}
+	});
+	require(["<%= params[:controller] %>"], function(m) {
+		console.log(arguments);
+	});
+</script>
+
+</body>
+</html>

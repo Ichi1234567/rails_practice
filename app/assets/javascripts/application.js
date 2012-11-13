@@ -11,37 +11,33 @@
 // GO AFTER THE REQUIRES BELOW.
 
 require.config({
-	hbs : {
-		templateExtension : 'hbs',
-		// if disableI18n is `true` it won't load locales and the i18n helper
-		// won't work as well.
-		disableI18n : true
-	},
-	"paths": {
-		tmpl: "../templates"
-	},
-	"shim": {
-		jquery_ujs: ["jquery"],
-		underscore: {
-			exports: "_"
-		},
-		backbone: {
-			deps: ["underscore"],
-			exports: "Backbone",
-			callback: function() {
-				require(["backbone_rails_sync", "backbone_datalink"]);
-			}
-		},
-		"handlebars": {
-			exports: "Handlebars",
-			callback: function() {
-				require("handlebars.runtime");
-				HandlebarsTemplates = {};
-			}
-		}
-	}
+    hbs : {
+        templateExtension : 'hbs',
+        // if disableI18n is `true` it won't load locales and the i18n helper
+        // won't work as well.
+        disableI18n : true
+    },
+    "paths": {
+        tmpl: "../templates"
+    },
+    "shim": {
+        jquery_ujs: ["jquery"],
+        underscore: {
+            exports: "_"
+        },
+        backbone: {
+            deps: ["underscore"],
+            exports: "Backbone"
+        },
+        backbone_rails_sync: ["backbone"],
+        backbone_datalink: ["backbone_datalink"],
+        "handlebars": {
+            exports: "Handlebars"
+        },
+        "handlebars.runtime": ["handlebars"]
+    }
 });
 
 define(["jquery_ujs", "backbone", "hbs", "handlebars"], function() {
-	console.log("application");
+    console.log("application");
 });
